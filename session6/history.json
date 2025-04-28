@@ -1,0 +1,54 @@
+{
+  "travel_options": [
+    {
+      "mode": "Train",
+      "availability": "Yes",
+      "details_available": true,
+	  "from_to":"Chennai to Tenkasi",
+      "summary": "There are multiple daily and weekly trains from Chennai to Tenkasi. The journey takes approximately 9 to 13 hours. Ticket prices range from ₹370 to ₹2490 depending on the class of travel. Popular trains include MS QLN EXPRESS, NELLAI EXPRESS, and PEARL CITY EXP.",
+      "example_trains": [
+        "MS QLN EXPRESS (16101)",
+        "NELLAI EXPRESS (12631)",
+        "PEARL CITY EXP (12693)"
+      ],
+      "ticket_price_range": "₹370 - ₹2490",
+      "travel_time": "9 - 13 hours"
+    },
+    {
+      "mode": "Bus",
+      "availability": "Yes",
+      "details_available": true,
+	  "from_to":"Chennai to Tenkasi",
+      "summary": "Numerous bus services, including both AC and non-AC sleeper options, are available from Chennai to Tenkasi. The travel time is around 10 to 13 hours. Ticket prices start from approximately ₹500 and can go up to ₹2750 depending on the bus type and operator. Several private operators like National Travels CHN, Yolo Bus, and Sri Amarnath Travels operate on this route.",
+      "ticket_price_range": "₹500 - ₹2750",
+      "travel_time": "10 - 13 hours",
+      "example_operators": [
+        "National Travels CHN",
+        "Yolo Bus",
+        "Sri Amarnath Travels"
+      ]
+    },
+    {
+      "mode": "Flight",
+      "availability": "No direct flights",
+      "details_available": true,
+	  "from_to":"Chennai to Tenkasi",
+      "summary": "There are no direct flights from Chennai to Tenkasi. The closest airports are in Thiruvananthapuram (TRV) and Tuticorin (TCR). From these airports, you would need to take a taxi or train to reach Tenkasi. Flying to Thiruvananthapuram and then taking a taxi is estimated to take around 4 hours and 41 minutes with costs ranging from ₹6,633 to ₹16,244.",
+      "closest_airports": [
+        {
+          "city": "Thiruvananthapuram",
+          "airport_code": "TRV",
+          "estimated_travel_time_to_tenkasi": "Taxi: ~3 hours",
+          "estimated_cost_to_tenkasi": "₹6,633 - ₹16,244 (including flight and taxi)"
+        },
+        {
+          "city": "Tuticorin",
+          "airport_code": "TCR",
+          "estimated_travel_time_to_tenkasi": "Train: ~2.5 hours",
+          "estimated_cost_to_tenkasi": "₹5,783 - ₹19,394 (including flight and train)"
+        }
+      ]
+    }
+  ],
+  "additional_notes": "The information provided is based on data available up to April 20, 2025. Please check with the respective travel operators for the most up-to-date schedules and pricing. Booking in advance is generally recommended, especially for train travel."
+}
