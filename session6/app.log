@@ -1277,3 +1277,318 @@
             Cls: 3A
             p1-B4 70
             Boarding allowed from TBM only
+2025-04-29 06:46:06,946-logger-INFO-===starting the connection establishing===
+2025-04-29 06:46:06,949-logger-INFO-loading mock model data in memory......
+2025-04-29 06:46:06,950-logger-INFO-retriving data......
+2025-04-29 06:46:06,950-logger-INFO-start extract perception prompt: You are AI agent extract the key facts from the given input and return the response as json structured format. 
+    response should contain following key facts
+    - user_query
+    - intent 
+    - channel
+    - entities
+    example use case: {
+  "user_query": "book train ticket",
+  "intent": "book_train_ticket",
+  "channel":"train_ticket",
+  "entities":{
+    "ticket_type": "train",
+    "from_location":"chennai",
+    "to_location":"tenkasi",
+    "date_time": "tomorrow",
+    "number_of_people": "2"
+  }
+} 
+ User input: can you book a ticket
+2025-04-29 06:46:07,965-logger-INFO-preception llm response :{
+  "user_query": "can you book a ticket",
+  "intent": "book_ticket",
+  "channel": null,
+  "entities": {}
+}
+2025-04-29 06:56:40,389-logger-INFO-===starting the connection establishing===
+2025-04-29 06:56:40,390-logger-INFO-loading mock model data in memory......
+2025-04-29 06:56:40,390-logger-INFO-retriving data......
+2025-04-29 06:56:40,390-logger-INFO-start extract perception prompt: You are AI agent extract the key facts from the given input and return the response as json structured format. 
+    response should contain following key facts
+    - user_query
+    - intent 
+    - channel
+    - entities
+    Important:
+    - Output response should be in dictionary value.
+    example use case: {
+  "user_query": "book train ticket",
+  "intent": "book_train_ticket",
+  "channel":"train_ticket",
+  "entities":{
+    "ticket_type": "train",
+    "from_location":"chennai",
+    "to_location":"tenkasi",
+    "date_time": "tomorrow",
+    "number_of_people": "2"
+  }
+} 
+ User input: can you able to book a ticket
+2025-04-29 06:56:42,856-logger-INFO-preception llm response :{
+  "user_query": "can you able to book a ticket",
+  "intent": "book_ticket",
+  "channel": "unknown",
+  "entities": {}
+}
+2025-04-29 06:59:02,209-logger-INFO-start extract perception prompt: You are AI agent extract the key facts from the given input and return the response as json structured format. 
+    response should contain following key facts
+    - user_query
+    - intent 
+    - channel
+    - entities
+    Important:
+    - Output response should be in dictionary value.
+    example use case: {
+  "user_query": "book train ticket",
+  "intent": "book_train_ticket",
+  "channel":"train_ticket",
+  "entities":{
+    "ticket_type": "train",
+    "from_location":"chennai",
+    "to_location":"tenkasi",
+    "date_time": "tomorrow",
+    "number_of_people": "2"
+  }
+} 
+ User input: can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples
+2025-04-29 06:59:04,663-logger-INFO-preception llm response :{
+  "user_query": "can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples",
+  "intent": "book_bus_ticket",
+  "channel": "bus_ticket",
+  "entities": {
+    "ticket_type": "bus",
+    "from_location": "tambaram",
+    "to_location": "tenkasi",
+    "date_time": "tomorrow",
+    "number_of_people": "2"
+  }
+}
+2025-04-29 06:59:04,671-logger-INFO-response {'json_response': '{"user_query":"can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples","intent":"book_bus_ticket","channel":"bus_ticket","entities":{"ticket_type":"bus","from_location":"tambaram","to_location":"tenkasi","date_time":"tomorrow","number_of_people":2}}'}
+2025-04-29 06:59:04,671-logger-INFO-loading mock model data in memory......
+2025-04-29 06:59:04,672-logger-INFO-new memory item is added [MemoryItem(user_query='can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples.', type='preference', timestamp='2025-04-29T06:56:32.821781', tool_name='train_ticket_channel', session_id='abc_1234_dcd', llm_output={'user_query': 'can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples.', 'intent': 'book_train_ticket', 'channel': 'train_ticket', 'entities': {'ticket_type': 'train', 'from_location': 'chennai', 'to_location': 'tenkasi', 'date_time': 'tomorrow', 'number_of_people': '2'}}), MemoryItem(user_query='can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples', type='preference', timestamp='2025-04-29T06:56:32.821781', tool_name='bus_ticket_channel', session_id='efg_1234_dcd', llm_output={'user_query': 'can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples', 'intent': 'book_bus_ticket', 'channel': 'bus_ticket', 'entities': {'ticket_type': 'train', 'from_location': 'chennai', 'to_location': 'tenkasi', 'date_time': 'tomorrow', 'number_of_people': '2'}}), MemoryItem(user_query='can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples', type='preference', timestamp='2025-04-29T06:56:32.821781', tool_name='bus_ticket', session_id='cc4d540a-e9b8-46f3-ade6-79f1abada8bb', llm_output={'user_query': 'can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples', 'intent': 'book_bus_ticket', 'channel': 'bus_ticket', 'entities': {'ticket_type': 'bus', 'from_location': 'tambaram', 'to_location': 'tenkasi', 'date_time': 'tomorrow', 'number_of_people': 2}})]
+2025-04-29 06:59:04,673-logger-INFO-decision invoking layer
+2025-04-29 06:59:06,386-logger-INFO-decision prompt: You are ticket booking agent, having ticket booking tools access to book the tickets.
+            Booking tools:
+            1. train_ticket
+            2. bus_ticket
+            3. cinema_ticket
+
+            Choose the any one of the booking tool in given format(no additional text):
+              1. FUNCTION_CALL:function_name
+
+            Guidelines:
+            - Respond using EXACTLY ONE of the formats above per step.
+            - Do NOT include extra text, explanation, or formatting.
+            - Use nested keys (e.g., input.string) and square brackets for lists.
+            Input summary:
+            - User input:"can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples"
+            - Intent:"book_bus_ticket"
+            - Channel:"bus_ticket"
+            - Entities:"ticket_type='bus' from_location='tambaram' to_location='tenkasi' date_time='tomorrow' number_of_people=2"
+            Examples:
+            - FUNCION_CALL: train_ticket
+            - FUNCTION_CALL: bus_ticket
+            - FUNCTION_CALL: cinema_ticket
+
+            Important:
+            - Do NOT invent tools. Use only the tools listed above.
+            - Give the exact output above mentioned in example format.
+            
+2025-04-29 06:59:06,387-logger-INFO-decision funciton calling FUNCTION_CALL: bus_ticket
+2025-04-29 06:59:06,387-logger-INFO-decision layer resp: FUNCTION_CALL: bus_ticket
+2025-04-29 06:59:06,387-logger-INFO-final response from the ticket booking agent:FUNCTION_CALL: bus_ticket
+2025-04-29 06:59:06,387-logger-INFO-bus ticket booking tool invoked
+2025-04-29 06:59:06,387-logger-INFO-ticket booking action executed successfully - Bus ticket is booked 
+
+    PNR-34343434
+    BusNo- TN11AE6549
+    SeatNo- W8
+    Boarding point will be updated shortly.
+2025-04-29 07:03:09,063-logger-INFO-===starting the connection establishing===
+2025-04-29 07:03:09,064-logger-INFO-loading mock model data in memory......
+2025-04-29 07:03:09,064-logger-INFO-retriving data......
+2025-04-29 07:03:09,064-logger-INFO-start extract perception prompt: You are AI agent extract the key facts from the given input and return the response as json structured format. 
+    response should contain following key facts
+    - user_query
+    - intent 
+    - channel
+    - entities
+    Important:
+    - Output response should be in dictionary value.
+    example use case: {
+  "user_query": "book train ticket",
+  "intent": "book_train_ticket",
+  "channel":"train_ticket",
+  "entities":{
+    "ticket_type": "train",
+    "from_location":"chennai",
+    "to_location":"tenkasi",
+    "date_time": "tomorrow",
+    "number_of_people": "2"
+  }
+} 
+ User input: can you able to book a ticket
+2025-04-29 07:03:11,071-logger-INFO-preception llm response :{
+  "user_query": "can you able to book a ticket",
+  "intent": "book_ticket",
+  "channel": "unknown",
+  "entities": {}
+}
+2025-04-29 07:04:16,861-logger-INFO-start extract perception prompt: You are AI agent extract the key facts from the given input and return the response as json structured format. 
+    response should contain following key facts
+    - user_query
+    - intent 
+    - channel
+    - entities
+    Important:
+    - Output response should be in dictionary value.
+    example use case: {
+  "user_query": "book train ticket",
+  "intent": "book_train_ticket",
+  "channel":"train_ticket",
+  "entities":{
+    "ticket_type": "train",
+    "from_location":"chennai",
+    "to_location":"tenkasi",
+    "date_time": "tomorrow",
+    "number_of_people": "2"
+  }
+} 
+ User input: can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples
+2025-04-29 07:04:19,429-logger-INFO-preception llm response :{
+  "user_query": "can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples",
+  "intent": "book_train_ticket",
+  "channel": "train_ticket",
+  "entities": {
+    "ticket_type": "train",
+    "from_location": "tambaram",
+    "to_location": "tenkasi",
+    "date_time": "tomorrow",
+    "number_of_people": "2"
+  }
+}
+2025-04-29 07:04:19,429-logger-INFO-response {'json_response': '{"user_query":"can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples","intent":"book_train_ticket","channel":"train_ticket","entities":{"ticket_type":"train","from_location":"tambaram","to_location":"tenkasi","date_time":"tomorrow","number_of_people":2}}'}
+2025-04-29 07:04:19,429-logger-INFO-loading mock model data in memory......
+2025-04-29 07:04:19,430-logger-INFO-new memory item is added [MemoryItem(user_query='can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples.', type='preference', timestamp='2025-04-29T07:02:53.628856', tool_name='train_ticket_channel', session_id='abc_1234_dcd', llm_output={'user_query': 'can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples.', 'intent': 'book_train_ticket', 'channel': 'train_ticket', 'entities': {'ticket_type': 'train', 'from_location': 'chennai', 'to_location': 'tenkasi', 'date_time': 'tomorrow', 'number_of_people': '2'}}), MemoryItem(user_query='can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples', type='preference', timestamp='2025-04-29T07:02:53.628856', tool_name='bus_ticket_channel', session_id='efg_1234_dcd', llm_output={'user_query': 'can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples', 'intent': 'book_bus_ticket', 'channel': 'bus_ticket', 'entities': {'ticket_type': 'train', 'from_location': 'chennai', 'to_location': 'tenkasi', 'date_time': 'tomorrow', 'number_of_people': '2'}}), MemoryItem(user_query='can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples', type='preference', timestamp='2025-04-29T07:02:53.628856', tool_name='train_ticket', session_id='c697786b-cb3f-4d95-9b52-fa1ce44cc187', llm_output={'user_query': 'can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples', 'intent': 'book_train_ticket', 'channel': 'train_ticket', 'entities': {'ticket_type': 'train', 'from_location': 'tambaram', 'to_location': 'tenkasi', 'date_time': 'tomorrow', 'number_of_people': 2}})]
+2025-04-29 07:04:19,430-logger-INFO-decision invoking layer
+2025-04-29 07:04:21,501-logger-INFO-decision prompt: You are ticket booking agent, having ticket booking tools access to book the tickets.
+            Booking tools:
+            1. train_ticket
+            2. bus_ticket
+            3. cinema_ticket
+
+            Choose the any one of the booking tool in given format(no additional text):
+              1. FUNCTION_CALL:function_name
+
+            Guidelines:
+            - Respond using EXACTLY ONE of the formats above per step.
+            - Do NOT include extra text, explanation, or formatting.
+            - Use nested keys (e.g., input.string) and square brackets for lists.
+            Input summary:
+            - User input:"can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples"
+            - Intent:"book_train_ticket"
+            - Channel:"train_ticket"
+            - Entities:"ticket_type='train' from_location='tambaram' to_location='tenkasi' date_time='tomorrow' number_of_people=2"
+            Examples:
+            - FUNCION_CALL: train_ticket
+            - FUNCTION_CALL: bus_ticket
+            - FUNCTION_CALL: cinema_ticket
+
+            Important:
+            - Do NOT invent tools. Use only the tools listed above.
+            - Give the exact output above mentioned in example format.
+            
+2025-04-29 07:04:21,502-logger-INFO-decision funciton calling FUNCTION_CALL:train_ticket
+2025-04-29 07:04:21,502-logger-INFO-decision layer resp: FUNCTION_CALL:train_ticket
+2025-04-29 07:04:21,502-logger-INFO-final response from the ticket booking agent:FUNCTION_CALL:train_ticket
+2025-04-29 07:04:21,502-logger-INFO-train ticket booking tool invoked
+2025-04-29 07:04:21,502-logger-INFO-ticket booking action executed successfully - Train ticket is booked 
+
+            PNR-431667889
+            Trn-12661
+            Frm TBM to TSI
+            Cls: 3A
+            p1-B4 70
+            Boarding allowed from TBM only
+2025-04-29 07:07:48,543-logger-INFO-===starting the connection establishing===
+2025-04-29 07:07:48,545-logger-INFO-loading mock model data in memory......
+2025-04-29 07:07:48,545-logger-INFO-retriving data......
+2025-04-29 07:07:48,545-logger-INFO-start extract perception prompt: You are AI agent extract the key facts from the given input and return the response as json structured format. 
+    response should contain following key facts
+    - user_query
+    - intent 
+    - channel
+    - entities
+    Important:
+    - Output response should be in dictionary value.
+    example use case: {
+  "user_query": "book train ticket",
+  "intent": "book_train_ticket",
+  "channel":"train_ticket",
+  "entities":{
+    "ticket_type": "train",
+    "from_location":"chennai",
+    "to_location":"tenkasi",
+    "date_time": "tomorrow",
+    "number_of_people": "2"
+  }
+} 
+ User input: can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples.
+2025-04-29 07:07:50,873-logger-INFO-preception llm response :{
+  "user_query": "can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples.",
+  "intent": "book_bus_ticket",
+  "channel": "bus_ticket",
+  "entities": {
+    "ticket_type": "bus",
+    "from_location": "tambaram",
+    "to_location": "tenkasi",
+    "date_time": "tomorrow",
+    "number_of_people": "2"
+  }
+}
+2025-04-29 07:07:50,874-logger-INFO-response {'json_response': '{"user_query":"can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples.","intent":"book_bus_ticket","channel":"bus_ticket","entities":{"ticket_type":"bus","from_location":"tambaram","to_location":"tenkasi","date_time":"tomorrow","number_of_people":2}}'}
+2025-04-29 07:07:50,874-logger-INFO-loading mock model data in memory......
+2025-04-29 07:07:50,874-logger-INFO-new memory item is added [MemoryItem(user_query='can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples.', type='preference', timestamp='2025-04-29T07:07:30.348700', tool_name='train_ticket_channel', session_id='abc_1234_dcd', llm_output={'user_query': 'can you able to book a train ticket from tambaram to tenkasi tomorrow for 2 peoples.', 'intent': 'book_train_ticket', 'channel': 'train_ticket', 'entities': {'ticket_type': 'train', 'from_location': 'chennai', 'to_location': 'tenkasi', 'date_time': 'tomorrow', 'number_of_people': '2'}}), MemoryItem(user_query='can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples', type='preference', timestamp='2025-04-29T07:07:30.348700', tool_name='bus_ticket_channel', session_id='efg_1234_dcd', llm_output={'user_query': 'can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples', 'intent': 'book_bus_ticket', 'channel': 'bus_ticket', 'entities': {'ticket_type': 'train', 'from_location': 'chennai', 'to_location': 'tenkasi', 'date_time': 'tomorrow', 'number_of_people': '2'}}), MemoryItem(user_query='can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples.', type='preference', timestamp='2025-04-29T07:07:30.348700', tool_name='bus_ticket', session_id='fdb60b66-ffdc-4605-9087-3bb0c1cb730b', llm_output={'user_query': 'can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples.', 'intent': 'book_bus_ticket', 'channel': 'bus_ticket', 'entities': {'ticket_type': 'bus', 'from_location': 'tambaram', 'to_location': 'tenkasi', 'date_time': 'tomorrow', 'number_of_people': 2}})]
+2025-04-29 07:07:50,874-logger-INFO-decision invoking layer
+2025-04-29 07:07:52,962-logger-INFO-decision prompt: You are ticket booking agent, having ticket booking tools access to book the tickets.
+            Booking tools:
+            1. train_ticket
+            2. bus_ticket
+            3. cinema_ticket
+
+            Choose the any one of the booking tool in given format(no additional text):
+              1. FUNCTION_CALL:function_name
+
+            Guidelines:
+            - Respond using EXACTLY ONE of the formats above per step.
+            - Do NOT include extra text, explanation, or formatting.
+            - Use nested keys (e.g., input.string) and square brackets for lists.
+            Input summary:
+            - User input:"can you able to book a bus ticket from tambaram to tenkasi tomorrow for 2 peoples."
+            - Intent:"book_bus_ticket"
+            - Channel:"bus_ticket"
+            - Entities:"ticket_type='bus' from_location='tambaram' to_location='tenkasi' date_time='tomorrow' number_of_people=2"
+            Examples:
+            - FUNCION_CALL: train_ticket
+            - FUNCTION_CALL: bus_ticket
+            - FUNCTION_CALL: cinema_ticket
+
+            Important:
+            - Do NOT invent tools. Use only the tools listed above.
+            - Give the exact output above mentioned in example format.
+            
+2025-04-29 07:07:52,963-logger-INFO-decision funciton calling FUNCTION_CALL: bus_ticket
+2025-04-29 07:07:52,963-logger-INFO-decision layer resp: FUNCTION_CALL: bus_ticket
+2025-04-29 07:07:52,963-logger-INFO-final response from the ticket booking agent:FUNCTION_CALL: bus_ticket
+2025-04-29 07:07:52,963-logger-INFO-bus ticket booking tool invoked
+2025-04-29 07:07:52,963-logger-INFO-ticket booking action executed successfully - Bus ticket is booked 
+
+    PNR-34343434
+    BusNo- TN11AE6549
+    SeatNo- W8
+    Boarding point will be updated shortly.

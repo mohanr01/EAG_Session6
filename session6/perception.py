@@ -4,7 +4,6 @@ import logger
 from dotenv import load_dotenv
 import google.generativeai as genai
 import os
-import ValidationHandler
 
 class Entities(BaseModel):
     ticket_type: Optional[str]
@@ -50,6 +49,8 @@ def extract_perception(user_input: str):
     - intent 
     - channel
     - entities
+    Important:
+    - Output response should be in dictionary value.
     example use case: {data} \n User input: {user_input}"""
     
     logger.loggingInfo(message=f"start extract perception prompt: {prompt}")
